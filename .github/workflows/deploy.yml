@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag go-hello-world:$(date +%s)
+      run: docker build . --file Dockerfile --tag gcr.io/zinc-quest-317510/go-hello-world:$(date +%s)
     - name: Publish the Docker image to GCR
       run: docker push gcr.io/zinc-quest-317510/go-hello-world:$(date +%s)
