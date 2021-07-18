@@ -1,0 +1,18 @@
+name: Deploy to cloud run
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag go-hello-world:$(date +%s)
+    - name: Publish the Docker image to GCR
+      run: docker push gcr.io/zinc-quest-317510/go-hello-world:$(date +%s)
